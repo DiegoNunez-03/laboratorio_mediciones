@@ -12,14 +12,21 @@ CREATE TABLE IF NOT EXISTS rango (
     id_rango      SERIAL PRIMARY KEY,
     nombre_rango  VARCHAR(100) NOT NULL,
     temp_min      INTEGER,
-    temp_max      INTEGER
+    temp_max      INTEGER,
+
+    CONSTRAINT uq_rango_nombre UNIQUE (nombre_rango)
 );
+
+
+
+
 
 CREATE TABLE IF NOT EXISTS mediciones (
     id_mediciones     SERIAL PRIMARY KEY,
     id_ciudad         INTEGER NOT NULL,
     id_rango          INTEGER NOT NULL,
     fecha             DATE NOT NULL DEFAULT CURRENT_DATE,
+    temperatura       INTEGER NOT NULL, 
     humedad           VARCHAR(10) NOT NULL,
     sensacion_termica VARCHAR(10) NOT NULL,
     presion           VARCHAR(10) NOT NULL,
