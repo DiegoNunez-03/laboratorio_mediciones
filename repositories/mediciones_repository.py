@@ -78,3 +78,62 @@ def insertar_medicion(
         return new_id
     finally:
         conn.close()
+
+
+def obtener_todas_las_mediciones():
+    """
+    Devuelve todas las mediciones con info de ciudad y rango.
+    """
+    # from database.connection import get_connection  
+
+    sql = """
+        SELECT
+            m.id_mediciones,
+            m.fecha,
+            m.temperatura,
+            m.humedad,
+            m.sensacion_termica,
+            m.presion,
+            m.velocidad_viento,
+            m.descripcion,
+            c.id_ciudad,
+            c.nombre AS ciudad,
+            c.provincia,
+            c.pais,
+            r.id_rango,
+            r.nombre_rango
+        FROM mediciones m
+        JOIN ciudad c ON m.id_ciudad = c.id_ciudad
+        JOIN rango r ON m.id_rango = r.id_rango
+        ORDER BY m.fecha DESC, m.id_mediciones DESC;
+    """
+
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            rows = cur.fetchall()
+
+    resultados = []
+    for row in rows:
+        resultados.append({
+            "id_medicion": row[0],
+            "fecha": row[1].isoformat() if row[1] is not None else None,
+            "temperatura": row[2],
+            "humedad": row[3],
+            "sensacion_termica": row[4],
+            "presion": row[5],
+            "velocidad_viento": row[6],
+            "descripcion": row[7],
+            "ciudad": {
+                "id_ciudad": row[8],
+                "nombre": row[9],
+                "provincia": row[10],
+                "pais": row[11],
+            },
+            "rango": {
+                "id_rango": row[12],
+                "nombre_rango": row[13],
+            }
+        })
+
+    return resultados

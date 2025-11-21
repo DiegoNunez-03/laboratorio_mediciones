@@ -1,0 +1,490 @@
+/* VARIABLES DE TEMA */
+:root {
+  --bg-main: #020617;
+  --bg-panel: #020617cc;
+  --bg-panel-solid: #020617;
+  --accent-cold: #38bdf8;   /* celeste frío */
+  --accent-warm: #f97316;   /* naranja cálido */
+  --accent-strong: #ef4444; /* rojo fuerte */
+  --border-soft: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --error: #f97373;
+  --radius-xl: 18px;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+}
+
+/* RESETEO BÁSICO */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* FONDO TIPO LABORATORIO (GRILLA) */
+.lab-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-image:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
+    radial-gradient(circle at bottom, rgba(249, 115, 22, 0.18), transparent 55%),
+    linear-gradient(
+      rgba(15, 23, 42, 0.9),
+      rgba(15, 23, 42, 0.95)
+    );
+}
+
+/* CONTENEDOR PRINCIPAL */
+.lab-app {
+  width: min(1100px, 100%);
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.92),
+      rgba(15, 23, 42, 0.98)
+    );
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.8rem 2rem 1.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(16px);
+}
+
+/* HEADER */
+.lab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
+  margin-bottom: 1.5rem;
+}
+
+.lab-header__title-block h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+}
+
+.lab-header__title-block p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.lab-header__badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.lab-header__badge span:first-child {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-cold), var(--accent-warm));
+  color: #0b1120;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lab-header__badge span:last-child {
+  text-align: right;
+  color: var(--text-muted);
+}
+
+/* MAIN LAYOUT */
+.lab-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+}
+
+/* PANEL BASE */
+.lab-panel {
+  background: radial-gradient(circle at top left, #111827, #020617);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-soft);
+  padding: 1.3rem 1.4rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.lab-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.1),
+    transparent 40%,
+    rgba(249, 115, 22, 0.06)
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.lab-panel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.lab-panel--results {
+  grid-column: 1 / -1;   /* este panel ocupa todo el ancho del grid */
+}
+
+.lab-panel__hint {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* PARA CONTENIDO INTERNO */
+.lab-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* CAMPOS DE FORMULARIO */
+.lab-field {
+  margin-bottom: 0.9rem;
+}
+
+.lab-field label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.lab-field__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.lab-field__icon {
+  font-size: 1rem;
+}
+
+.lab-field input[type="number"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.lab-field input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
+}
+
+/* BOTÓN */
+.lab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.2rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #0b1120;
+  background: linear-gradient(90deg, var(--accent-cold), var(--accent-warm));
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.8);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.lab-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.95);
+}
+
+.lab-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.8);
+}
+
+/* MENSAJES */
+.lab-message {
+  min-height: 1.1rem;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.lab-message--error {
+  color: var(--error);
+}
+
+/* NOTA / RANGOS */
+.lab-note {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.35);
+  font-size: 0.8rem;
+}
+
+.lab-note h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.lab-note ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lab-note li + li {
+  margin-top: 0.1rem;
+}
+
+/* MONITOR DE RESULTADOS */
+.lab-monitor {
+  background: radial-gradient(circle at top left, #111827, #020617);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 0.9rem 0.95rem 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.lab-monitor__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.lab-monitor__values {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.lab-monitor__temp span:first-child {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.lab-monitor__unit {
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.lab-monitor__category {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lab-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* Podés hacer que, según la categoría, el JS cambie estas clases:
+   .lab-chip--cold, .lab-chip--warm, .lab-chip--hot, etc. */
+.lab-chip--cold {
+  border-color: var(--accent-cold);
+  color: var(--accent-cold);
+}
+.lab-chip--warm {
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
+}
+.lab-chip--hot {
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
+}
+
+/* BARRA DE ESTADO */
+.lab-monitor__status-bar {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+}
+
+.lab-monitor__status-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-cold), var(--accent-warm));
+  transition: width 0.3s ease;
+}
+
+/* TABLA DE RESULTADOS */
+.lab-table-wrapper h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.lab-table-wrapper {
+  font-size: 0.85rem;
+  max-height: 260px;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 64, 175, 0.6);
+  width: 100%;
+  display: block;
+}
+
+/* Scroll lindo en navegadores que lo soportan */
+.lab-table-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.lab-table-wrapper::-webkit-scrollbar-track {
+  background: #020617;
+}
+.lab-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 999px;
+}
+
+.lab-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lab-table thead {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.98)
+  );
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.lab-table th,
+.lab-table td {
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+}
+
+.lab-table th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.9);
+}
+
+.lab-table tbody tr:nth-child(odd) {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.lab-table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.92);
+}
+
+.lab-table tbody tr:hover {
+  background: rgba(30, 64, 175, 0.55);
+}
+
+/* FOOTER */
+.lab-footer {
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.35);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .lab-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .lab-app {
+    padding: 1.2rem 1.1rem 1.1rem;
+  }
+
+  .lab-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lab-footer {
+    flex-direction: column;
+  }
+}
+
+/* --- AUTOCOMPLETE --- */
+.autocomplete-list {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  background: #0f172acc;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.autocomplete-list li {
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background: rgba(56, 189, 248, 0.25);
+}
+
+/* HISTORIAL DE CIUDADES */
+.historial-ciudades {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.historial-ciudades li {
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

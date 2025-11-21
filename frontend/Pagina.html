@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Laboratorio de Clasificación de Temperatura</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="lab-body">
+  <div class="lab-app">
+    
+    <header class="lab-header">
+      <div class="lab-header__title-block">
+        <h1>Laboratorio de Temperatura</h1>
+        <p>Clasificación automática de temperaturas en rangos cualitativos.</p>
+      </div>
+      <div class="lab-header__badge">
+        <span>TP2</span>
+        <span>Algoritmos &amp; Datos</span>
+      </div>
+    </header>
+
+    <main class="lab-main">
+      <!-- PANEL 1: BUSCADOR DE CIUDADES -->
+      <section class="lab-panel lab-panel--controls">
+        <h2>Buscador de ciudades (Argentina)</h2>
+
+        <div class="lab-field">
+          <label for="ciudadInput">Ciudad</label>
+          <div class="lab-field__input-wrapper">
+            <span class="lab-field__icon">🏙️</span>
+            <input
+              type="text"
+              id="ciudadInput"
+              placeholder="Ej: Córdoba, Rosario, Ushuaia"
+              autocomplete="off"
+            />
+          </div>
+          <ul id="autocompleteList" class="autocomplete-list"></ul>
+        </div>
+
+        <button id="btnBuscarCiudad" class="lab-button">
+          Buscar temperatura
+        </button>
+
+        <div id="errorCiudad" class="lab-message lab-message--error"></div>
+
+        <div class="lab-note">
+          <h3>Historial de ciudades buscadas</h3>
+          <ul id="historialCiudades" class="historial-ciudades"></ul>
+        </div>
+      </section>
+
+      <!-- PANEL 2: TEMPERATURA POR CIUDAD -->
+      <section class="lab-panel lab-panel--ciudad">
+        <h2>Temperatura por ciudad</h2>
+
+        <div class="lab-monitor">
+          <div class="lab-monitor__label">Ciudad consultada</div>
+
+          <div class="lab-monitor__values">
+            <div class="lab-monitor__temp">
+              <span id="tempCiudadValor">--</span>
+              <span class="lab-monitor__unit">°C</span>
+            </div>
+            <div class="lab-monitor__category">
+              <span id="tempCiudadNombre" class="lab-chip">
+                Sin datos
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-note">
+          <h3>Detalle de medición</h3>
+          <ul id="detallesCiudadLista"></ul>
+        </div>
+      </section>
+
+      <!-- PANEL 3: HISTORIAL DE MEDICIONES (OCUPA TODO EL ANCHO) -->
+      <section class="lab-panel lab-panel--results">
+        <h2>Historial de mediciones</h2>
+
+        <div class="lab-table-wrapper">
+          <table class="lab-table" id="tablaResultados">
+            <thead>
+              <tr>
+                <th>Ciudad</th>
+                <th>Temperatura (°C)</th>
+                <th>Categoría</th>
+                <th>Fecha / Hora</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyResultados">
+              <!-- JS irá agregando filas acá -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="lab-footer">
+      <span>Trabajo Práctico 2 – Generacion y evaluacion de Datos de Prueba</span>
+      <span>Hecho por: Nuñez Diego y Guari Ezequiel</span>
+    </footer>
+
+  </div>
+
+  <!-- JS del TP2 -->
+  <script src="app.js"></script>
+</body>
+</html>

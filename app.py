@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from services.mediciones_service import (
     registrar_medicion_desde_api,
+    listar_mediciones,
     CiudadNoEncontrada,
     ErrorAPIClima,
 )
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route("/api/mediciones", methods=["POST"])
 def crear_medicion():
@@ -55,6 +57,22 @@ def crear_medicion():
 
     # Todo OK
     return jsonify(resultado), 201
+
+
+@app.route("/api/mediciones", methods=["GET"])
+def obtener_mediciones():
+    """
+    Devuelve la lista de todas las mediciones registradas.
+    """
+    try:
+        mediciones = listar_mediciones()
+    except Exception as e:
+        return jsonify({
+            "error": "No se pudieron obtener las mediciones",
+            "detalle": str(e),
+        }), 500
+
+    return jsonify(mediciones), 200
 
 
 if __name__ == "__main__":

@@ -4,10 +4,13 @@ from repositories.ciudad_repository import (
     obtener_ciudad_por_nombre,
     crear_ciudad,
 )
+
 from repositories.mediciones_repository import (
     obtener_rango_por_temperatura,
     insertar_medicion,
+    obtener_todas_las_mediciones,
 )
+
 from services.clima_service import (
     geocodificar_ciudad,
     obtener_clima_actual,
@@ -150,10 +153,20 @@ def registrar_medicion_desde_api(nombre_ciudad: str):
     return resultado
 
 
+def listar_mediciones():
+    """
+    Devuelve la lista de mediciones ya registradas.
+    Ahora mismo solo delega en el repositorio, pero si mañana
+    querés agregar lógica (filtros, orden, etc.), va acá.
+    """
+    return obtener_todas_las_mediciones()
+
+
 # Reexportamos las excepciones de clima para que app.py pueda capturarlas
 __all__ = [
     "registrar_medicion",
     "registrar_medicion_desde_api",
     "CiudadNoEncontrada",
     "ErrorAPIClima",
+    "listar_mediciones",
 ]
