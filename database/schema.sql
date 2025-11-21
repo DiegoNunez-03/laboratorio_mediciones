@@ -17,10 +17,6 @@ CREATE TABLE IF NOT EXISTS rango (
     CONSTRAINT uq_rango_nombre UNIQUE (nombre_rango)
 );
 
-
-
-
-
 CREATE TABLE IF NOT EXISTS mediciones (
     id_mediciones     SERIAL PRIMARY KEY,
     id_ciudad         INTEGER NOT NULL,
