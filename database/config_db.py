@@ -17,5 +17,4 @@ def get_db_config():
     }
 
 def get_search_path():
-    # para usar después en SET search_path ...
     return os.getenv("DB_SEARCH_PATH", "lab_mediciones_db,public")
