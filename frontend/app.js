@@ -166,34 +166,6 @@ function extraerNombreCiudad(data, fallback) {
 // =======================================
 // Historial (tabla)
 // =======================================
-
-// function agregarFilaHistorial(temperatura, categoria, fechaHoraTexto, ciudadLabel) {
-//   if (!tbodyResultados) return;
-
-//   const tr = document.createElement("tr");
-
-//   const tdCiudad = document.createElement("td");
-//   tdCiudad.textContent = ciudadLabel || "—";
-
-//   const tdTemp = document.createElement("td");
-//   tdTemp.textContent = temperatura !== null && temperatura !== undefined
-//     ? temperatura
-//     : "--";
-
-//   const tdCat = document.createElement("td");
-//   tdCat.textContent = categoria || "Sin datos";
-
-//   const tdFecha = document.createElement("td");
-//   tdFecha.textContent = fechaHoraTexto || new Date().toLocaleString("es-AR");
-
-//   tr.appendChild(tdCiudad);
-//   tr.appendChild(tdTemp);
-//   tr.appendChild(tdCat);
-//   tr.appendChild(tdFecha);
-
-//   tbodyResultados.appendChild(tr);
-// }
-
 function agregarFilaHistorial(temperatura, categoria, fechaHoraTexto, ciudadLabel, alInicio = false) {
     if (!tbodyResultados) return;
   
