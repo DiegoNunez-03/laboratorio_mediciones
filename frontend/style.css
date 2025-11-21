@@ -318,7 +318,6 @@ body {
   background: rgba(15, 23, 42, 0.85);
 }
 
-/* Podés hacer que, según la categoría, el JS cambie estas clases:
    .lab-chip--cold, .lab-chip--warm, .lab-chip--hot, etc. */
 .lab-chip--cold {
   border-color: var(--accent-cold);
@@ -366,8 +365,6 @@ body {
   width: 100%;
   display: block;
 }
-
-/* Scroll lindo en navegadores que lo soportan */
 .lab-table-wrapper::-webkit-scrollbar {
   width: 6px;
 }
