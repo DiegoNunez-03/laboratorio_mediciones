@@ -1,7 +1,7 @@
 # 🧪 Laboratorio de Clasificación de Temperatura – TP2  
 **Algoritmos & Datos – Nuñez Diego | Guari Ezequiel**
 
-Este proyecto implementa un laboratorio interactivo para **clasificar temperaturas**, consultar el clima real de ciudades de Argentina mediante API, y registrar automáticamente cada medición en una base de datos **PostgreSQL**.  
+Este proyecto implementa un laboratorio interactivo para **clasificar temperaturas**, consultar el clima real de ciudades mediante API, y registrar automáticamente cada medición en una base de datos **PostgreSQL**.  
 Incluye backend en **Flask**, integración con la API de clima **Open-Meteo**, y frontend dinámico en **HTML, CSS y JS**.
 
 ---
