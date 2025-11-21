@@ -10,8 +10,6 @@ def get_connection():
     """
     db_config = get_db_config()
     conn = psycopg2.connect(**db_config)
-
-    # Setear search_path para no escribir lab_mediciones_db.rango, etc.
     search_path = get_search_path()
     with conn.cursor() as cur:
         cur.execute(f"SET search_path TO {search_path};")
